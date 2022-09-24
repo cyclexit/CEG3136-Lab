@@ -7,7 +7,8 @@
 
 game_t the_game;
 
-int main(void) {
+int main(void)
+{
   char winner;
   SCB->CCR |= SCB_CCR_STKALIGN_Msk; // Enable double word stack alignment 
   //(recommended in Cortex-M3 r1p1, default in Cortex-M3 r2px and Cortex-M4)
