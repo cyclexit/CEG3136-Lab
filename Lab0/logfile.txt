@@ -1,0 +1,18 @@
+
+Hello world!
+textbuffer address = 0x2000000c
+Please enter text:Hello I am Hongyi
+
+You entered      :Hello I am Hongyi
+
+Please enter text:My student number is 300053082
+
+You entered      :My student number is 300053082
+
+Please enter text:Bye~
+
+You entered      :Bye~
+
+Please enter text:q
+
+You entered      :q
