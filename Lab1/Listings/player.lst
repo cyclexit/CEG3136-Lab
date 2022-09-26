@@ -29,12 +29,12 @@ ARM Macro Assembler    Page 1
    18 0000000C F04F 0801       MOV              R8, #1      ; R8 = 1
    19 00000010 FA08 F807       LSL              R8, R8, R7  ; R8 = R8 << R7
    20 00000014 EA08 0806       AND              R8, R6      ; R8 = R8 & R6
-   21 00000018 F018 0F01       TST              R8, #1
-   22 0000001C B910            CBNZ             R0, RET1
-   23 0000001E F04F 0000       MOV              R0, #0      ; 
+   21 00000018 F1B8 0F00       CMP              R8, #0
+   22 0000001C D102            BNE              RET0
+   23 0000001E F04F 0001       MOV              R0, #1      ; 
    24 00000022 4770            BX               LR          ; return
-   25 00000024         RET1
-   26 00000024 F04F 0001       MOV              R0, #1
+   25 00000024         RET0
+   26 00000024 F04F 0000       MOV              R0, #0
    27 00000028 4770            BX               LR          ; return
    28 0000002A         
    29 0000002A                 ENDFUNC
@@ -51,7 +51,7 @@ ARM Macro Assembler    Page 1
    36 0000002A         ; r1 row
    37 0000002A         ; r2 col
    38 0000002A         
-   39 0000002A E92D 03C0       PUSH             {R6, R7, R8, R9}
+   39 0000002A E92D 43C0       PUSH             {R6, R7, R8, R9, LR}
    40 0000002E 8806            LDRH             R6, [R0]    ; R6 = player->stat
                                                             e
    41 00000030 EA4F 0781       LSL              R7, R1, #2  ; R7 = row << 2
@@ -60,20 +60,20 @@ ARM Macro Assembler    Page 1
    44 0000003A FA08 F807       LSL              R8, R8, R7  ; R8 = R8 << R7
    45 0000003E 46C1            MOV              R9, R8
    46 00000040 EA08 0806       AND              R8, R6      ; R8 = R8 & R6
-   47 00000044 F018 0F01       TST              R8, #1
-   48 00000048 B910            CBNZ             R0, STORE
-   49 0000004A F04F 0000       MOV              R0, #0      ;
+   47 00000044 F1B8 0F00       CMP              R8, #0
+   48 00000048 D106            BNE              RET0_1
+   49 0000004A EA49 0906       ORR              R9, R6      ; R9 |= R6
 
 
 
 ARM Macro Assembler    Page 2 
 
 
-   50 0000004E 4770            BX               LR          ; return
-   51 00000050         STORE
-   52 00000050 EA49 0906       ORR              R9, R6      ; R9 |= R6
-   53 00000054 F8A0 9000       STRH             R9, [R0]
-   54 00000058 F04F 0001       MOV              R0, #1
+   50 0000004E F8A0 9000       STRH             R9, [R0]
+   51 00000052 F04F 0001       MOV              R0, #1      ;
+   52 00000056 4770            BX               LR          ; return
+   53 00000058         RET0_1
+   54 00000058 F04F 0000       MOV              R0, #0
    55 0000005C 4770            BX               LR          ; return
    56 0000005E         
    57 0000005E                 ENDFUNC
@@ -111,22 +111,22 @@ Symbol: .text
    Uses
       None
 Comment: .text unused
-RET1 00000024
+RET0 00000024
 
-Symbol: RET1
+Symbol: RET0
    Definitions
       At line 25 in file player.s
    Uses
       At line 22 in file player.s
-Comment: RET1 used once
-STORE 00000050
+Comment: RET0 used once
+RET0_1 00000058
 
-Symbol: STORE
+Symbol: RET0_1
    Definitions
-      At line 51 in file player.s
+      At line 53 in file player.s
    Uses
       At line 48 in file player.s
-Comment: STORE used once
+Comment: RET0_1 used once
 player_check_move_s 00000000
 
 Symbol: player_check_move_s
