@@ -10,15 +10,15 @@ player_check_move_s FUNCTION	; char player_check_move_s(player_t *player, int ro
 	; r0 *player
 	; r1 row
 	; r2 col
-	
-	PUSH {R3, R4, R5}
-	LDRH R3, [R0] ; R3 = player->state
-	LSL R4, R1, #2 ; R4 = row << 2
-	ADD R4, R4, R2 ; R4 = R4 + col
-	MOV R5, #1 ; R5 = 1
-	LSL R5, R5, R4 ; R5 = R5 << R4
-	AND R5, R3 ; R5 = R5 & R3
-	TST R5, #1
+
+	PUSH {R6, R7, R8}
+	LDRH R6, [R0] ; R6 = player->state
+	LSL R7, R1, #2 ; R7 = row << 2
+	ADD R7, R7, R2 ; R7 = R7 + col
+	MOV R8, #1 ; R8 = 1
+	LSL R8, R8, R7 ; R8 = R8 << R7
+	AND R8, R6 ; R8 = R8 & R6
+	TST R8, #1
 	CBNZ R0, RET1
 	MOV	R0, #0					; 
 	BX	LR						; return
@@ -35,22 +35,22 @@ player_make_move_s FUNCTION	; char player_make_move_s(player_t *player, int row,
 	; r0 *player
 	; r1 row
 	; r2 col
-	
-	PUSH {R3, R4, R5, R6}
-	LDRH R3, [R0] ; R3 = player->state
-	LSL R4, R1, #2 ; R4 = row << 2
-	ADD R4, R4, R2 ; R4 = R4 + col
-	MOV R5, #1 ; R5 = 1
-	LSL R5, R5, R4 ; R5 = R5 << R4
-	MOV R6, R5
-	AND R5, R3 ; R5 = R5 & R3
-	TST R5, #1
+
+	PUSH {R6, R7, R8, R9}
+	LDRH R6, [R0] ; R6 = player->state
+	LSL R7, R1, #2 ; R7 = row << 2
+	ADD R7, R7, R2 ; R7 = R7 + col
+	MOV R8, #1 ; R8 = 1
+	LSL R8, R8, R7 ; R8 = R8 << R7
+	MOV R9, R8
+	AND R8, R6 ; R8 = R8 & R6
+	TST R8, #1
 	CBNZ R0, STORE
 	MOV	R0, #0					;
 	BX	LR						; return
 STORE 
-	ORR R6, R3 ; R6 |= R3
-	STRH R6, [R0]
+	ORR R9, R6 ; R9 |= R6
+	STRH R9, [R0]
 	MOV R0, #1
 	BX	LR						; return
 
