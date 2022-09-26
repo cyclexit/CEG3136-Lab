@@ -11,6 +11,8 @@ player_check_move_s FUNCTION	; char player_check_move_s(player_t *player, int ro
 	; r1 row
 	; r2 col
 
+	; problem here: it updates some memory accidentally
+
 	PUSH {R6, R7, R8}
 	LDRH R6, [R0] ; R6 = player->state
 	LSL R7, R1, #2 ; R7 = row << 2
