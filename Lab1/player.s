@@ -1,69 +1,43 @@
-
-  AREA    |.text|, CODE, READONLY
-  PRESERVE8;
-  THUMB;
-
-
-  EXPORT player_check_move_s
+	AREA    |.text|, CODE, READONLY
+	PRESERVE8;
+	THUMB;
 
 player_check_move_s FUNCTION	; char player_check_move_s(player_t *player, int row, int col);
+	EXPORT player_check_move_s
 	; r0 *player
 	; r1 row
 	; r2 col
-
-	; problem here: it updates some memory accidentally
-
-	PUSH {R6, R7, R8}
-	LDRH R6, [R0] ; R6 = player->state
-	LSL R7, R1, #2 ; R7 = row << 2
-	ADD R7, R7, R2 ; R7 = R7 + col
-	MOV R8, #1 ; R8 = 1
-	LSL R8, R8, R7 ; R8 = R8 << R7
-	AND R8, R6 ; R8 = R8 & R6
-	CMP R8, #0
-	BNE RET0
-	MOV	R0, #1					; 
-	BX	LR						; return
-RET0
-	MOV R0, #0
-	BX	LR						; return
-
-  ENDFUNC
-  
-
-  EXPORT player_make_move_s
+	PUSH {r4-r5, lr}			; push registers
+	MOV r3, r0
+	LDRH r0, [r3, #0x00]
+	ADD r5, r2, r1, LSL #2
+	MOVS r4, #0x01
+	LSLS r4, r4, r5
+	ANDS r0, r0, r4
+	CBZ r0, mov1
+	MOV	r0, #0					;
+return POP {r4-r5, pc}			; pop the registers
+mov1 MOV r0, #1
+	B return
+	ENDFUNC
 
 player_make_move_s FUNCTION	; char player_make_move_s(player_t *player, int row, int col);
+	EXPORT player_make_move_s
 	; r0 *player
 	; r1 row
 	; r2 col
 
-	PUSH {R6, R7, R8, R9, LR}
-	LDRH R6, [R0] ; R6 = player->state
-	LSL R7, R1, #2 ; R7 = row << 2
-	ADD R7, R7, R2 ; R7 = R7 + col
-	MOV R8, #1 ; R8 = 1
-	LSL R8, R8, R7 ; R8 = R8 << R7
-	MOV R9, R8
-	AND R8, R6 ; R8 = R8 & R6
-	CMP R8, #0
-	BNE RET0_1
-	ORR R9, R6 ; R9 |= R6
-	STRH R9, [R0]
-	MOV	R0, #1					;
-	BX	LR						; return
-RET0_1
-	MOV R0, #0
-	BX	LR						; return
+	MOV	r0, #0					;
+	BX	lr						; return
 
-  ENDFUNC
-  
-  EXPORT player_won_s
+	ENDFUNC
 
 player_won_s FUNCTION	; char player_won_s(player_t * player);
+	EXPORT player_won_s
 	; r0 *player
-	MOV	R0, #0					; 
-	BX	LR						; return
-  ENDFUNC
+
+	MOV	r0, #0					; 
+	BX	lr						; return
+	ENDFUNC
   
-  END
+	END
