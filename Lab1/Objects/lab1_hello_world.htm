@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\lab1_hello_world.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\lab1_hello_world.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed Sep 28 15:13:56 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed Sep 28 17:54:00 2022
 <BR><P>
 <H3>Maximum Stack Usage =        176 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -317,7 +317,7 @@ Global Symbols
 <P><STRONG><a name="[66]"></a>player_make_move_s</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, player_1.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> player.o(i.player_init)
 </UL>
-<P><STRONG><a name="[65]"></a>player_won_s</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, player_1.o(.text))
+<P><STRONG><a name="[65]"></a>player_won_s</STRONG> (Thumb, 132 bytes, Stack size 0 bytes, player_1.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> player.o(i.player_init)
 </UL>
 <P><STRONG><a name="[68]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_stm32f417xx.o(.text))
@@ -838,7 +838,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[94]"></a>game_move_valid</STRONG> (Thumb, 198 bytes, Stack size 24 bytes, game.o(i.game_move_valid))
+<P><STRONG><a name="[94]"></a>game_move_valid</STRONG> (Thumb, 146 bytes, Stack size 24 bytes, game.o(i.game_move_valid))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152 + Unknown Stack Size
 <LI>Call Chain = game_move_valid &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>

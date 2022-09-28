@@ -26,9 +26,9 @@ char game_move_valid(game_t *game, int row, int col){  // return 1 if valid, 0 o
 	// printf("c[1]=%d\n", (int) c[1]); // debug
 	// printf("s[1]=%d\n", (int) s[1]); // debug
 	
-	printf("c[0] != s[0] is %d\n", c[0] != s[0]);
+	// printf("c[0] != s[0] is %d\n", c[0] != s[0]); // debug
 	// printf("c[1]=%d, s[1]=%d\n", (int) c[1], (int) s[1]); // debug
-	printf("c[1] != s[1] is %d\n", c[1] != s[1]);
+	// printf("c[1] != s[1] is %d\n", c[1] != s[1]); // debug
 
   if ((c[0] != s[0]) || (c[1] != s[1])) printf ("Error player_check_move check failed: [c] %s, [s] %s XXXXXXXXXXXXXXXXXXXXXX\n", c, s);
   //return (player_check_move(&game->player[0], row, col) & player_check_move(&game->player[1], row, col));  // the location is vacant in both players state
