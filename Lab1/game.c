@@ -8,12 +8,29 @@
 
 char game_move_valid(game_t *game, int row, int col){  // return 1 if valid, 0 otherwise
   char c[3] = {0,0,0};
-  char s[3] = {0,0,0};
+  char s[3] = {1,1,1};
+
+	// printf("row=%d, col=%d\n", row, col); // debug
+
   c[0] = game->player[0].player_check_move(&game->player[0], row, col) + '0';
+	// printf("c[0]=%d\n", (int) c[0]); // debug
+
   c[1] = game->player[1].player_check_move(&game->player[1], row, col) + '0';
+	// printf("c[1]=%d\n", (int) c[1]); // debug
+
   s[0] = game->player_checker[0].player_check_move(&game->player_checker[0], row, col) + '0';
+	// printf("c[1]=%d\n", (int) c[1]); // debug
+	// printf("s[0]=%d\n", (int) s[0]); // debug
+
   s[1] = game->player_checker[1].player_check_move(&game->player_checker[1], row, col) + '0';
-  if (c[0] != s[0] || c[1] != s[1]) printf ("Error player_check_move check failed: [c] %s, [s] %s XXXXXXXXXXXXXXXXXXXXXX\n", c, s);
+	// printf("c[1]=%d\n", (int) c[1]); // debug
+	// printf("s[1]=%d\n", (int) s[1]); // debug
+	
+	// printf("c[0] != s[0] is %d\n", c[0] != s[0]); // debug
+	// printf("c[1]=%d, s[1]=%d\n", (int) c[1], (int) s[1]); // debug
+	// printf("c[1] != s[1] is %d\n", c[1] != s[1]); // debug
+
+  if ((c[0] != s[0]) || (c[1] != s[1])) printf ("Error player_check_move check failed: [c] %s, [s] %s XXXXXXXXXXXXXXXXXXXXXX\n", c, s);
   //return (player_check_move(&game->player[0], row, col) & player_check_move(&game->player[1], row, col));  // the location is vacant in both players state
   return (c[0] & c[1] & 0x1);
 }
