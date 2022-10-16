@@ -11,16 +11,17 @@ void tank_init(tank_t *tank) {
 int get_usage_rate() {
   float p = rand() * 100.0 / RAND_MAX;
   int v = (int) p;
+  // printf("DEBUG: get_usage_rate = %d\n", v); // debug
   return v;
 }
 
 void tank_update_height(tank_t *tank, float pump_flow, int drain_tank) {
   float new_height;
   if (drain_tank == 1) {
-    // maximum usage rate is 1, twice is 2
+    // maximum usage rate is 100, twice is 200
     new_height =  tank->height +
                   pump_flow * tank->input_flow_to_height_rate -
-                  2 * tank->output_flow_to_height_rate / 100;
+                  200 * tank->output_flow_to_height_rate / 100;
   } else {
     new_height =  tank->height +
                   pump_flow * tank->input_flow_to_height_rate -
