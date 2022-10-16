@@ -16,7 +16,7 @@ uint32_t volatile msTicks;                       // Counter for millisecond Inte
 tank_t tank;
 pump_t pump;
 char state_names[3][20] = {"OFF", "ON_HIGH", "ON_LOW"};
-
+int drain_tank = 0; // task2
 
 void SysTick_Handler(void) {                    // SysTick Interrupt Handler
   msTicks++;                                     // Increment Counter
@@ -47,9 +47,14 @@ int main(void) {
 
   Device_Initialization();
 
-  int drain_tank;
   while (1) {
-    printf("Drain the tank (0: no, 1: yes): ");
-    scanf("%d", &drain_tank);
+    if (drain_tank != 1) {
+      printf("Drain the tank (0: no, 1: yes): ");
+      scanf("%d", &drain_tank);
+    } else {
+      printf("Exit the drain mode (0: no, 1: yes): ");
+      scanf("%d", &drain_tank);
+      drain_tank = !drain_tank;
+    }
   }
 }
