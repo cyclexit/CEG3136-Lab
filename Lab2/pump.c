@@ -9,41 +9,50 @@ void pump_init(pump_t *pump) {
 }
 
 pump_state_e pump_update_state(pump_t *pump, float tank_height, int drain_tank) {
-  if (drain_tank == 1) {
-    pump->flow = 0.0;
-    pump->state = DRAIN;
-    return pump->state;
-  }
 
   switch (pump->state) {
     case OFF:
-      if (tank_height < ALMOST_EMPTY) {
+      if (drain_tank == 1) {
+        pump->flow = 0.0;
+        pump->state = DRAIN;
+        return pump->state;
+      } else if (tank_height < ALMOST_EMPTY) {
         pump->flow = 1.0;
         pump->state = ON_HIGH;
       }
       break;
     case ON_HIGH:
-      if (tank_height > ALMOST_FULL) {
+      if (drain_tank == 1) {
+        pump->flow = 0.0;
+        pump->state = DRAIN;
+        return pump->state;
+      } else if (tank_height > ALMOST_FULL) {
         pump->flow = 0.5;
         pump->state = ON_LOW;
       }
       break;
     case ON_LOW:
-      if (tank_height > TANK_FULL) {
+      if (drain_tank == 1) {
+        pump->flow = 0.0;
+        pump->state = DRAIN;
+        return pump->state;
+      } else if (tank_height > TANK_FULL) {
         pump->flow = 0.0;
         pump->state = OFF;
       }
       break;
     case DRAIN:
-      if (tank_height < ALMOST_EMPTY) {
-        pump->flow = 1.0;
-        pump->state = ON_HIGH;
-      } else if (tank_height > ALMOST_FULL) {
-        pump->flow = 0.5;
-        pump->state = ON_LOW;
-      } else if (tank_height > TANK_FULL) {
-        pump->flow = 0.0;
-        pump->state = OFF;
+      if (drain_tank == 0) {
+        if (tank_height < ALMOST_EMPTY) {
+          pump->flow = 1.0;
+          pump->state = ON_HIGH;
+        } else if (tank_height > ALMOST_FULL) {
+          pump->flow = 0.5;
+          pump->state = ON_LOW;
+        } else if (tank_height > TANK_FULL) {
+          pump->flow = 0.0;
+          pump->state = OFF;
+        }
       }
       break;
     default:
