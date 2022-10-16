@@ -24,8 +24,8 @@ void SysTick_Handler(void) {                    // SysTick Interrupt Handler
   tank_update_height(&tank, pump.flow);
 }
 
-void sys_clock_timer_init(int period) {                
-  if (SysTick_Config (SystemCoreClock / period)) { // SysTick period in seconds
+void sys_clock_timer_init(int period) {
+  if (SysTick_Config(SystemCoreClock / period)) { // SysTick period in seconds
     printf("\nError SysTick_Config!\n");  // Handle Error 
   }
 }
