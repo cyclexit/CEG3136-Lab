@@ -8,9 +8,13 @@ void pump_init(pump_t *pump) {
   pump->flow = 0;
 }
 
-pump_state_e pump_update_state(pump_t *pump, float tank_height) {
-  // this is just a stub!
-  // implement the state machine here
+pump_state_e pump_update_state(pump_t *pump, float tank_height, int drain_tank) {
+  if (drain_tank == 1) {
+    pump->flow = 0.0;
+    pump->state = DRAIN;
+    return pump->state;
+  }
+
   switch (pump->state) {
     case OFF:
       if (tank_height < ALMOST_EMPTY) {
