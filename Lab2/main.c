@@ -18,7 +18,7 @@ pump_t pump;
 char state_names[3][20] = {"OFF", "ON_HIGH", "ON_LOW"};
 
 
-void SysTick_Handler (void) {                    // SysTick Interrupt Handler
+void SysTick_Handler(void) {                    // SysTick Interrupt Handler
   msTicks++;                                     // Increment Counter
 	pump_update_state(&pump, tank.height);
   tank_update_height(&tank, pump.flow);
@@ -30,15 +30,14 @@ void sys_clock_timer_init(int period) {
   }
 }
  
-void Device_Initialization (void)  {             // Configure & Initialize MCU
+void Device_Initialization(void) {             // Configure & Initialize MCU
   sys_clock_timer_init (1000);            // setup device-specific timer
   pump_init(&pump);
   tank_init(&tank);
 }
 
 
-int main(void)
-{
+int main(void) {
   //char textbuffer[40]; // Text buffer
 
   SCB->CCR |= SCB_CCR_STKALIGN_Msk; // Enable double word stack alignment 
@@ -48,8 +47,5 @@ int main(void)
 
   Device_Initialization ();
 	
-  while (1) {
-  }
+  while (1) {}
 }
-
-
