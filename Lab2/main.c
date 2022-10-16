@@ -15,13 +15,13 @@
 uint32_t volatile msTicks;                       // Counter for millisecond Interval
 tank_t tank;
 pump_t pump;
-char state_names[3][20] = {"OFF", "ON_HIGH", "ON_LOW", "DRAIN"};
+char state_names[4][20] = {"OFF", "ON_HIGH", "ON_LOW", "DRAIN"};
 int drain_tank = 0; // task2
 
 void SysTick_Handler(void) {                    // SysTick Interrupt Handler
   msTicks++;                                     // Increment Counter
-	pump_update_state(&pump, tank.height, int drain_tank);
-  tank_update_height(&tank, pump.flow);
+	pump_update_state(&pump, tank.height, drain_tank);
+  tank_update_height(&tank, pump.flow, drain_tank);
 }
 
 void sys_clock_timer_init(int period) {
