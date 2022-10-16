@@ -12,4 +12,4 @@ typedef struct tank_s {
 } tank_t;
 
 void tank_init(tank_t *tank);
-void tank_update_height(tank_t *tank, float pump_flow);
+void tank_update_height(tank_t *tank, float pump_flow, int drain_tank);
