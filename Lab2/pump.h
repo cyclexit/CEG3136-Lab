@@ -12,6 +12,7 @@ typedef enum pump_States { OFF, ON_HIGH, ON_LOW, DRAIN } pump_state_e; // declar
 typedef struct pump_s {
   float flow;
   pump_state_e state;
+  pump_state_e before_drain;
 } pump_t;
 
 pump_state_e pump_update_state(pump_t *pump, float tank_height, int drain_tank);
