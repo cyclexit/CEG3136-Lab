@@ -38,7 +38,7 @@ void Device_Initialization(void) {             // Configure & Initialize MCU
 
 
 int main(void) {
-  //char textbuffer[40]; // Text buffer
+  char textbuffer[40]; // Text buffer
 
   SCB->CCR |= SCB_CCR_STKALIGN_Msk; // Enable double word stack alignment 
   //(recommended in Cortex-M3 r1p1, default in Cortex-M3 r2px and Cortex-M4)
@@ -50,11 +50,15 @@ int main(void) {
   while (1) {
     if (drain_tank != 1) {
       printf("Drain the tank (0: no, 1: yes): ");
-      scanf("%d", &drain_tank);
+      fgets(textbuffer, (sizeof(textbuffer)-1), stdin);
+      drain_tank = textbuffer[0] - '0';
+      printf("\n");
     } else {
       printf("Exit the drain mode (0: no, 1: yes): ");
-      scanf("%d", &drain_tank);
+      fgets(textbuffer, (sizeof(textbuffer)-1), stdin);
+      drain_tank = textbuffer[0] - '0';
       drain_tank = !drain_tank;
+      printf("\n");
     }
   }
 }
