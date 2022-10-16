@@ -13,4 +13,3 @@ pump_state_e pump_update_state(pump_t *pump, float tank_height) {
   // implement the state machine here
   return OFF;
 }
-
