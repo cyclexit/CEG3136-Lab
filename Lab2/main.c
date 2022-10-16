@@ -45,7 +45,11 @@ int main(void) {
   printf("\nHello world!\n");
   printf("\n SystemCoreClock = %d \n", SystemCoreClock);
 
-  Device_Initialization ();
-	
-  while (1) {}
+  Device_Initialization();
+
+  int drain_tank;
+  while (1) {
+    printf("Drain the tank (0: no, 1: yes): ");
+    scanf("%d", &drain_tank);
+  }
 }
