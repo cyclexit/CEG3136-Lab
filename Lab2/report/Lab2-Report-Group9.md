@@ -10,7 +10,10 @@ Group 9:
   - [Task 1](#task-1)
   - [Task 2](#task-2)
 
+***
+
 ## Task 1
 ![task1-line-chart.png](task1-line-chart.png)
 
 ## Task 2
+![task2-state-machine.png](task2-state-machine.png)

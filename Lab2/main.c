@@ -31,7 +31,7 @@ void sys_clock_timer_init(int period) {
 }
  
 void Device_Initialization(void) {             // Configure & Initialize MCU
-  sys_clock_timer_init (1000);            // setup device-specific timer
+  sys_clock_timer_init(1000);            // setup device-specific timer
   pump_init(&pump);
   tank_init(&tank);
 }
