@@ -192,6 +192,13 @@ void system_update_state(alarm_system_t *system, user_t *logged_in_user){
           system->state = UNARMED;
         }
       }
+      // logged out all users (super and normal)
+      for (i = 0; i < 64; ++i) {
+        system->user_list[i].state = LOGGED_OUT;
+      }
+      for (i = 0; i < 8; ++i) {
+        system->super_list[i].usr.state = LOGGED_OUT;
+      }
       // reset the sensors
       for (i = 0; i < 64; ++i) {
         sensorm_reset(&system->sensor_list[i]);
