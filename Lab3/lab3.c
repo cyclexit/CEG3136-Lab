@@ -28,7 +28,7 @@ void SysTick_Handler (void) {                    // SysTick Interrupt Handler
   tmp_sensor_states = (prev_sensor_states ^ sensor_states) & sensor_states;
   if (tmp_sensor_states) __NVIC_SetPendingIRQ(EXTI0_IRQn);
   prev_sensor_states = sensor_states;
-  system_update_state(&system);
+  system_update_state(&system, logged_in_user);
   if ((msTicks & 0x7FF) == 0x7FF) __NVIC_SetPendingIRQ(EXTI2_IRQn);
 }
 

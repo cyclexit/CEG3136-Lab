@@ -23,7 +23,7 @@ typedef struct alarm_system_s {
 void alarm_system_init (alarm_system_t *system);
 user_t *system_get_user(alarm_system_t *system, char* passcode);
 void system_user_req_arm(alarm_system_t *system, user_t *user);
-void system_update_state(alarm_system_t *system);
+void system_update_state(alarm_system_t *system, user_t *logged_in_user);
 void system_user_login_event(alarm_system_t *system, user_t *user);
 void system_fsm_coverage_update (alarm_system_t *system);
 void system_fsm_coverage_display (alarm_system_t *system);

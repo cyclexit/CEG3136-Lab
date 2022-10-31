@@ -92,6 +92,7 @@ void system_user_req_arm(alarm_system_t *system, user_t *user){
   system->target_state = ARMED;
 }
 void system_user_login_event(alarm_system_t *system, user_t *user){
+  user->state = LOGGED_IN;
 	printf("user %s has just logged in \n", user->name);
 }
 
@@ -137,11 +138,13 @@ void system_alarm_reset (alarm_system_t *system){
   }
 }
 
-void system_update_state(alarm_system_t *system){
+void system_update_state(alarm_system_t *system, user_t *logged_in_user){
   switch (system->state){
-    case UNARMED: 
-      if (system->target_state == ARMED) {
-        system->state = ARMED;
+    case UNARMED:
+      if (logged_in_user != NULL && logged_in_user->state == LOGGED_IN) {
+        printf("OK, good if you see this.\n");
+        system->state = WAITING_TO_ARM;
+        system->prev_state = UNARMED;
       }
       break;
     case WAITING_TO_ARM: 
