@@ -143,6 +143,7 @@ void system_alarm_reset (alarm_system_t *system){
 void system_update_state(alarm_system_t *system, user_t *logged_in_user){
   static const uint32_t kWaitingTimeSecond = 10;
   static const uint32_t kMsPerSecond = 1000;
+  int i;
 
   switch (system->state){
     case UNARMED:
@@ -176,8 +177,25 @@ void system_update_state(alarm_system_t *system, user_t *logged_in_user){
           system->state = UNARMED;
         }
       }
+      for (i = 0; i < 64; ++i) {
+        if (system->sensor_list[i].state == TRIGGERED) {
+          system->prev_state = system->state;
+          system->state = ALARMED;
+          break;
+        }
+      }
       break;
-    case ALARMED: 
+    case ALARMED:
+      if (logged_in_user != NULL) {
+        if (logged_in_user->is_super_user) {
+          system->prev_state = system->state;
+          system->state = UNARMED;
+        }
+      }
+      // reset the sensors
+      for (i = 0; i < 64; ++i) {
+        sensorm_reset(&system->sensor_list[i]);
+      }
       break;
   }
   system_fsm_coverage_update (system);
