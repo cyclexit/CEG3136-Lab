@@ -92,8 +92,10 @@ void system_user_req_arm(alarm_system_t *system, user_t *user){
   system->target_state = ARMED;
 }
 void system_user_login_event(alarm_system_t *system, user_t *user){
-  user->state = LOGGED_IN;
-	printf("user %s has just logged in \n", user->name);
+  if (user != NULL) {
+    user->state = user->state == LOGGED_OUT ? LOGGED_IN : LOGGED_OUT;
+    printf("user %s has just logged in \n", user->name);
+  }
 }
 
 void system_fsm_coverage_update (alarm_system_t *system){
@@ -139,15 +141,33 @@ void system_alarm_reset (alarm_system_t *system){
 }
 
 void system_update_state(alarm_system_t *system, user_t *logged_in_user){
+  static const uint32_t kWaitingTimeSecond = 10;
+  static const uint32_t kMsPerSecond = 1000;
+
   switch (system->state){
     case UNARMED:
       if (logged_in_user != NULL && logged_in_user->state == LOGGED_IN) {
-        printf("OK, good if you see this.\n");
+        // printf("OK, good if you see this.\n"); // debug
+        system->prev_state = system->state;
         system->state = WAITING_TO_ARM;
-        system->prev_state = UNARMED;
       }
       break;
-    case WAITING_TO_ARM: 
+    case WAITING_TO_ARM:
+      if (logged_in_user != NULL) {
+        uint32_t logged_in_time = (logged_in_user->current_timestamp
+                                  - logged_in_user->logged_in_timestamp) / kMsPerSecond;
+        // printf("%d seconds after logged in\n", logged_in_time); // debug
+        if (logged_in_user->state == LOGGED_IN) {
+          if (logged_in_time >= kWaitingTimeSecond) {
+            system->prev_state = system->state;
+            system->state = ARMED;
+          }
+        } else {
+          // printf("Logged during waiting to arm...\n"); // debug
+          system->prev_state = system->state;
+          system->state = UNARMED;
+        }
+      }
       break;
     case ARMED: 
       break;

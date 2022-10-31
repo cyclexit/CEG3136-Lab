@@ -6,6 +6,7 @@
 #include "super_user.h"
 #include "alarm_system.h"
 #include <string.h>
+#include <time.h>
 
 uint64_t sensor_states;
 uint64_t prev_sensor_states;
@@ -28,6 +29,7 @@ void SysTick_Handler (void) {                    // SysTick Interrupt Handler
   tmp_sensor_states = (prev_sensor_states ^ sensor_states) & sensor_states;
   if (tmp_sensor_states) __NVIC_SetPendingIRQ(EXTI0_IRQn);
   prev_sensor_states = sensor_states;
+  if (logged_in_user != NULL) logged_in_user->current_timestamp = msTicks; // update the time
   system_update_state(&system, logged_in_user);
   if ((msTicks & 0x7FF) == 0x7FF) __NVIC_SetPendingIRQ(EXTI2_IRQn);
 }
@@ -52,6 +54,7 @@ void EXTI0_IRQHandler (void) {
 
 void EXTI1_IRQHandler (void) {
 	printf("EXTI1_IRQHandler clk cnt 0x%x \n", msTicks);
+  if (logged_in_user != NULL) logged_in_user->logged_in_timestamp = msTicks;
   system_user_login_event(&system, logged_in_user);
 }
 

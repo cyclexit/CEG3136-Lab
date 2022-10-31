@@ -12,6 +12,7 @@
 .\objects\alarm_system.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\alarm_system.o: alarm.h
 .\objects\alarm_system.o: user.h
+.\objects\alarm_system.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
 .\objects\alarm_system.o: super_user.h
 .\objects\alarm_system.o: user.h
 .\objects\alarm_system.o: alarm_system.h

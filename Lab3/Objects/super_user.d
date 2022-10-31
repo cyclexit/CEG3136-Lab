@@ -13,3 +13,4 @@
 .\objects\super_user.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\super_user.o: super_user.h
 .\objects\super_user.o: user.h
+.\objects\super_user.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h

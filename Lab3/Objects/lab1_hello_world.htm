@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\lab1_hello_world.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\lab1_hello_world.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon Oct 31 09:40:28 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon Oct 31 10:35:05 2022
 <BR><P>
 <H3>Maximum Stack Usage =        264 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -711,7 +711,6 @@ Global Symbols
 <P><STRONG><a name="[8c]"></a>__aeabi_memclr</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rt_memclr.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strncpy
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;alarm_system_init
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_init
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;alarm_init
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sensor_init
 </UL>
@@ -726,6 +725,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = __aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;alarm_system_init
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_init
 </UL>
 
 <P><STRONG><a name="[d7]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 4 bytes, rt_memclr_w.o(.text), UNUSED)
@@ -853,7 +853,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f417xx.o(RESET)
 </UL>
-<P><STRONG><a name="[13]"></a>EXTI1_IRQHandler</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, lab3.o(i.EXTI1_IRQHandler))
+<P><STRONG><a name="[13]"></a>EXTI1_IRQHandler</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, lab3.o(i.EXTI1_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152 + Unknown Stack Size
 <LI>Call Chain = EXTI1_IRQHandler &rArr; system_user_login_event &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
@@ -870,7 +870,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f417xx.o(RESET)
 </UL>
-<P><STRONG><a name="[b]"></a>SysTick_Handler</STRONG> (Thumb, 162 bytes, Stack size 16 bytes, lab3.o(i.SysTick_Handler))
+<P><STRONG><a name="[b]"></a>SysTick_Handler</STRONG> (Thumb, 180 bytes, Stack size 16 bytes, lab3.o(i.SysTick_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
 <LI>Call Chain = SysTick_Handler &rArr; system_update_state &rArr; system_fsm_coverage_update &rArr; alarm_system_display &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
@@ -1055,7 +1055,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[9a]"></a>system_update_state</STRONG> (Thumb, 74 bytes, Stack size 16 bytes, alarm_system.o(i.system_update_state))
+<P><STRONG><a name="[9a]"></a>system_update_state</STRONG> (Thumb, 138 bytes, Stack size 16 bytes, alarm_system.o(i.system_update_state))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
 <LI>Call Chain = system_update_state &rArr; system_fsm_coverage_update &rArr; alarm_system_display &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
@@ -1065,7 +1065,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 
-<P><STRONG><a name="[96]"></a>system_user_login_event</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, alarm_system.o(i.system_user_login_event))
+<P><STRONG><a name="[96]"></a>system_user_login_event</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, alarm_system.o(i.system_user_login_event))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144 + Unknown Stack Size
 <LI>Call Chain = system_user_login_event &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
@@ -1078,7 +1078,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 152 + Unknown Stack Size
 <LI>Call Chain = user_init &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+<BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf

@@ -12,6 +12,7 @@
 .\objects\lab3.o: sensor.h
 .\objects\lab3.o: alarm.h
 .\objects\lab3.o: user.h
+.\objects\lab3.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
 .\objects\lab3.o: super_user.h
 .\objects\lab3.o: user.h
 .\objects\lab3.o: alarm_system.h
