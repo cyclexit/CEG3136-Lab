@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\lab1_hello_world.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\lab1_hello_world.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon Oct 31 10:35:05 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon Oct 31 10:37:32 2022
 <BR><P>
 <H3>Maximum Stack Usage =        264 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -617,7 +617,6 @@ Global Symbols
 <LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI1_IRQHandler
 <LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI0_IRQHandler
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_user_login_event
-<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_update_state
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_fsm_coverage_display
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;alarm_system_display
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;user_init
@@ -1055,12 +1054,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[9a]"></a>system_update_state</STRONG> (Thumb, 138 bytes, Stack size 16 bytes, alarm_system.o(i.system_update_state))
+<P><STRONG><a name="[9a]"></a>system_update_state</STRONG> (Thumb, 154 bytes, Stack size 16 bytes, alarm_system.o(i.system_update_state))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
 <LI>Call Chain = system_update_state &rArr; system_fsm_coverage_update &rArr; alarm_system_display &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_fsm_coverage_update
+<BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_fsm_coverage_update
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>

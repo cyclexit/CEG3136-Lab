@@ -169,7 +169,13 @@ void system_update_state(alarm_system_t *system, user_t *logged_in_user){
         }
       }
       break;
-    case ARMED: 
+    case ARMED:
+      if (logged_in_user != NULL) {
+        if (logged_in_user->state == LOGGED_OUT) {
+          system->prev_state = system->state;
+          system->state = UNARMED;
+        }
+      }
       break;
     case ALARMED: 
       break;
