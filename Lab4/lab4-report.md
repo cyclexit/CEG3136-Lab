@@ -10,6 +10,7 @@ Group 9:
     - [svc.s](#svcs)
     - [svc.c](#svcc)
     - [Simulation logs](#simulation-logs)
+  - [Task 2](#task-2)
 
 ## Task 1
 ### svc.h
@@ -80,3 +81,7 @@ void __SVC_1(investor_t* investor, stock_holding_t* holding){
 ### Simulation logs
 
 The logs are in the file `task1-log.txt`.
+
+## Task 2
+
+The logs are in the file `task2-log.txt`.
