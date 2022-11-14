@@ -2,6 +2,8 @@
 #include "stdio.h"
 #include <string.h>
 
+#include "stock_exchange.h"
+
 void __svc(0) svc_zero(const char *string);
 void __svc(1) svc_one(const char *string);
 
