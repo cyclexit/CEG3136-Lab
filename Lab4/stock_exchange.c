@@ -44,10 +44,20 @@ void stock_exchange_update(uint32_t time){
 }
 
 void stock_exchange_display_stats(void){
+  int i, j;
+  uint32_t net_worth;
+
   printf ("Number of BUY transactions: %d \n", get_num_buy());
   printf ("Number of SELL transactions: %d \n", get_num_sell());
+
+  for (i = 0; i < NUM_INVESTORS; ++i) {
+    investor_t cur = singleton_exchange.investors[i];
+    net_worth = cur.cache;
+    for (j = 0; j < MAX_HOLDINGS; ++j) {
+      if (cur.holdings[j].stock != NULL) {
+        net_worth += cur.holdings[j].quantity * cur.holdings[j].stock->price;
+      }
+    }
+    printf("Investor %d: net_worth = %d\n", i, net_worth);
+  }
 }
-
-
-
-
