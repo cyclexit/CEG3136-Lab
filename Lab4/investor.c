@@ -10,6 +10,7 @@ static uint32_t num_sell = 0;
 
 void investor_init (investor_t *investor, char* name, uint32_t cache){
   memset(investor, 0, sizeof(investor_t));  // initialize struct with zero
+  investor->initial_cache = cache;
   investor->cache = cache;
   memcpy(investor->name, name, strlen(name));
   investor->id = investor_cnt;

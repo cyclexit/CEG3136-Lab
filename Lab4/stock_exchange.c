@@ -46,6 +46,7 @@ void stock_exchange_update(uint32_t time){
 void stock_exchange_display_stats(void){
   int i, j;
   uint32_t net_worth;
+  int32_t gain_loss;
 
   printf ("Number of BUY transactions: %d \n", get_num_buy());
   printf ("Number of SELL transactions: %d \n", get_num_sell());
@@ -58,6 +59,7 @@ void stock_exchange_display_stats(void){
         net_worth += cur.holdings[j].quantity * cur.holdings[j].stock->price;
       }
     }
-    printf("Investor %d: net_worth = %d\n", i, net_worth);
+    gain_loss = ((int32_t) net_worth - (int32_t) cur.initial_cache) * 100 / (int32_t) cur.initial_cache;
+    printf("Investor %d: net_worth = %d, initial_cash = %d, gain/loss = %d%%\n", i, net_worth, cur.initial_cache, gain_loss);
   }
 }

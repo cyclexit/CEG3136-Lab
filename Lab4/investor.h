@@ -7,6 +7,7 @@
 
 typedef struct investor_s {
   uint16_t id;
+  uint32_t initial_cache;
   uint32_t cache;
   char name[64];
   stock_holding_t holdings[MAX_HOLDINGS];
