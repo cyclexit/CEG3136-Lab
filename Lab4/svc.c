@@ -12,9 +12,9 @@ void SVC_Handler_c (investor_t* investor, stock_holding_t* holding, unsigned int
 
 
 void __SVC_0(investor_t* investor, stock_holding_t* holding){
-  printf("svc_zero: %s\n", string);
+  investor_buy(investor, holding);
 }
 void __SVC_1(investor_t* investor, stock_holding_t* holding){
-  printf("svc_one: %s\n", string);
+  investor_sell(investor, holding);
 }
 

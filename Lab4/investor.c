@@ -1,4 +1,5 @@
 #include <stdlib.h>
+
 #include "investor.h"
 #include "stock_exchange.h"
 
@@ -57,7 +58,7 @@ void investor_add_transaction(investor_t *investor){
       else {
         holding->quantity = max_quantity;
       }
-      investor_buy (investor, holding);
+      svc_zero(investor, holding);
       break;
     }
     case SELL: {
@@ -82,7 +83,7 @@ void investor_add_transaction(investor_t *investor){
         n++;
       }
 
-      investor_sell (investor, holding);
+      svc_one(investor, holding);
       break;
     }
   }

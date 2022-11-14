@@ -3,6 +3,7 @@
     "files.associations": {
         "*.ml": "ocaml",
         "*.mli": "ocaml",
-        "time.h": "c"
+        "time.h": "c",
+        "svc.h": "c"
     }
 }

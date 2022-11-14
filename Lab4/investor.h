@@ -2,6 +2,7 @@
 #define __INVESTOR_H__
 
 #include "stock.h"
+#include "svc.h"
 
 #define MAX_HOLDINGS  1024
 
