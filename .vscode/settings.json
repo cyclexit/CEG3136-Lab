@@ -4,6 +4,8 @@
         "*.ml": "ocaml",
         "*.mli": "ocaml",
         "time.h": "c",
-        "svc.h": "c"
+        "svc.h": "c",
+        "stock_exchange.h": "c",
+        "investor.h": "c"
     }
 }

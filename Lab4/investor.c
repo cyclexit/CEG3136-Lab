@@ -2,6 +2,7 @@
 
 #include "investor.h"
 #include "stock_exchange.h"
+#include "svc.h"
 
 static uint16_t investor_cnt = 0;
 static uint32_t num_buy = 0;

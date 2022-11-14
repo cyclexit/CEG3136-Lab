@@ -53,8 +53,8 @@ int main(void)
 	
   Device_Initialization ();
   
-  svc_zero("String to pass to SVC handler zero");
-  svc_one("String to pass to a different OS function");
+  // svc_zero("String to pass to SVC handler zero");
+  // svc_one("String to pass to a different OS function");
 
   printf("Press Enter to initialize Stock Exchange:");
   fgets(textbuffer, (sizeof(textbuffer)-1), stdin);		
