@@ -13,7 +13,7 @@ SVC_Handler FUNCTION	; char SVC_Handler();
     LDR R12,[R12,#24]     ; Read Saved PC from Stack 
     LDRH R12,[R12,#-2]    ; Load Halfword 
     BICS R12,R12,#0xFF00  ; Extract SVC Number
-	MOV  R1, R12
+    MOV R2, R12
     B SVC_Handler_c
   ENDFUNC
   
