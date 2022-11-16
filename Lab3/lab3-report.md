@@ -1,16 +1,16 @@
-# CEG3136 Lab 2 Report
+# CEG3136 Lab 3 Report
 
 Group 9:
 * Monique Diemert
 * Hongyi Lin
 
-- [CEG3136 Lab 2 Report](#ceg3136-lab-2-report)
-  - [Code for system_update_state()](#code-for-system_update_state)
-  - [States and Transitionis Coverage](#states-and-transitionis-coverage)
+- [CEG3136 Lab 3 Report](#ceg3136-lab-3-report)
+  - [Code Snippet](#code-snippet)
+  - [States and Transitions Coverage](#states-and-transitions-coverage)
 
 ***
 
-## Code for system_update_state()
+## Code Snippet
 ```c
 void system_update_state(alarm_system_t *system, user_t *logged_in_user){
   static const uint32_t kWaitingTimeSecond = 10;
@@ -74,7 +74,7 @@ void system_update_state(alarm_system_t *system, user_t *logged_in_user){
 }
 ```
 
-## States and Transitionis Coverage
+## States and Transitions Coverage
 ```
 FSM State Coverage:
   UNARMED  3
